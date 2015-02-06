@@ -1,0 +1,88 @@
+﻿@model IList<rpg.Models.Atributos>
+@{
+    Layout = "~/Views/Shared/_Grid.cshtml";
+}
+@Styles.Render("~/bundles/modalcss")
+
+<table id="tabelaGrid" cellpadding="0" cellspacing="0">
+    <thead>
+        <tr class="titulo">
+            <td></td>
+            <td>Descrição</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var Atributos in Model)
+        {
+            <tr class="linha">
+                <td></td>
+                <td>@Atributos.Descricao</td>
+                <td>
+                    <a href="#" onclick="clickmodal(@Atributos.Cod_Atributo, '@Atributos.Descricao')">Editar</a>
+                </td>
+                <td>
+                    <a href="#" onclick="deletar(@Atributos.Cod_Atributo, '@Atributos.Descricao', this)">Deletar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="modal" id="modal" style="width: 500px; height: 200px;">
+
+    <div class="fechar">
+        <a href="#" onclick="fecharmodal()">Fechar</a>
+    </div>
+    <div class="titulomodal">
+        <p id="titulomodal" style=" margin-left: 170px;">Editar Atributos</p>
+    </div>
+    <form method="post">
+        <div class="modalform" style="width: 400px; height: 100%; float:left;">
+            <div class="fordescricao">
+                <input type="hidden" name="cod_atributo" value="123" id="cod_perfil" />
+                <label for="descricao">Descrição:</label>
+                <input id="descricao" name="Atributos.descricao" required />
+            </div>
+            
+        </div>
+        <div style="width: 80px; height: 100%;" class="divbtn">
+            <input class="btnsalvar" id="btnsalvar" type="submit" value="Salvar" onclick="salvar()" style="margin-top: 125px;" />
+        </div>
+    </form>
+</div>
+
+<script>
+    function clickmodal(id, descricao) {
+        
+        $('#cod_atributo').val(id);
+        $('#descricao').val(descricao);
+        $('.modal').bPopup({
+            modalClose: false
+        });
+
+    }
+
+    function fecharmodal() {
+        var bPopup = $('.modal').bPopup();
+        bPopup.close();
+    }
+
+    function botaonovo() {
+        clickmodal(0, "");
+    }
+
+    function salvar() {
+        
+    }
+
+   function deletar(id, descricao, botao){
+       if (confirm("O Atributo " + descricao +" seá excluido do sistema ")) {
+           var par = $(botao).parent().parent()
+           par.remove();
+           $('table tbody tr:odd').removeClass("zebraUm zebraDois").addClass('zebraUm');
+           $('table tbody tr:even').removeClass("zebraUm zebraDois").addClass('zebraDois');
+       }
+    }
+
+</script>   
