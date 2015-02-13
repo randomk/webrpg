@@ -34,11 +34,25 @@ namespace rpg.Controllers
                 AtributoDao _AtributoDao = new AtributoDao();
                 if (cod_atributo == 0)
                 {
-                    msg = _AtributoDao.Insert(descricao, ativo);
+                    if (verifica_acesso("Atributos", "Novo"))
+                    {
+                        msg = _AtributoDao.Insert(descricao, ativo);
+                    }
+                    else
+                    {
+                        msg = "Acesso não permitido";
+                    }
                 }
                 else
                 {
-                    msg = _AtributoDao.update(cod_atributo, descricao, ativo);
+                    if (verifica_acesso("Atributos", "Alterar"))
+                    {
+                        msg = _AtributoDao.update(cod_atributo, descricao, ativo);
+                    }
+                    else
+                    {
+                        msg = "Acesso não permitido";
+                    }
                 }                
             }
             return Json(msg);            
@@ -47,22 +61,27 @@ namespace rpg.Controllers
         [HttpPost]
         public ActionResult delete(int cod_atributo)
         {
-            AtributoDao _AtributoDao = new AtributoDao();
-            return Json(_AtributoDao.delete(cod_atributo));
+            if (verifica_acesso("Atributos", "Deletar"))
+            {
+                AtributoDao _AtributoDao = new AtributoDao();
+                return Json(_AtributoDao.delete(cod_atributo));
+            }
+            return Json("Acesso não permitido");
         }
 
         public string validar (string descricao, int cod_atributo)
         {
+            string msg = "";
             AtributoDao _AtributoDao = new AtributoDao();
             if (string.IsNullOrEmpty(descricao))
             {
-                return "Campo descrição obrigatório";
+                msg += " Campo descrição obrigatório /n";
             }
             if (!_AtributoDao.verifica_descricao(cod_atributo, descricao))
             {
-                return "Já existe uma descrição com esse nome";
+                msg += " Já existe uma descrição com esse nome /n";
             }
-            return "";
+            return msg;
         }
     }
 }

@@ -24,3 +24,36 @@ function exp(me) {
     if (el.style.display == 'block') el.style.display = 'none';
     else el.style.display = 'block';
 }
+
+function fecharmodal() {
+    var bPopup = $('.modal').bPopup();
+    bPopup.close();
+}
+
+function beforeSendFunction() {
+    $('.modaljs').bPopup({
+        modalClose: false
+    });
+}
+
+function successFunction(msg) {
+    if (msg != "") {
+        alert(msg);
+    }
+    ('#textjs').html("Sucesso!");
+    location.reload();
+}
+
+function errorFunction(msg) {
+    if (msg != "") {
+        alert(msg);
+    }
+    else {
+        alert("Erro, Atualize a pagina e tente novamente!");
+    }
+}
+
+function completeFunction() {
+    var bPopup = $('.modaljs').bPopup();
+    bPopup.close();
+}

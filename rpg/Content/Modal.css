@@ -2,6 +2,12 @@
     display:none;     
     background-color:white;
 }
+.modaljs { 
+    display:none;     
+    background-color:white;
+    width:200px;
+    height:100px;
+}
 .fechar{
     float:right;
     padding-right:10px;
@@ -38,7 +44,7 @@ li {
     color: #de5d29;
     float: left;
     font-family: Arial;
-    font-size: 21px;
+    font-size: 19px;
 }
 .selecione 
 {
@@ -50,4 +56,12 @@ li {
 .modal .linha
 {
     padding-top: 10px;
+}
+.textjs{
+    padding-left:68px;
+    padding-top:38px;
+    color: #de5d29;
+    float: left;
+    font-family: Arial;
+    font-size: 14px;
 }

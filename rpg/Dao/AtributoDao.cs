@@ -58,6 +58,7 @@ namespace rpg.Dao
                 string strInsert = "insert into atributos (descricao, ativo) values('" + descricao.Replace("'", "''") + "', '"+ativo+"')";
                 _conn.execute(strInsert);                
                 _LogDao.insert("Atributos", "add", "");
+                msg = "Atributo '" + descricao + "', Criado.";
             }
             catch (Exception)
             {
@@ -76,7 +77,8 @@ namespace rpg.Dao
 
                 string strupdate = "update atributos set descricao = '" + descricao.Replace("'", "''") + "', ativo = '"+ativo+"' where cod_atributo = " + cod_atributo + "";
                 _conn.execute(strupdate);
-                _LogDao.insert("Atributos", "alt", "id " + cod_atributo); 
+                _LogDao.insert("Atributos", "alt", "id " + cod_atributo);
+                msg = "Atributo '" + descricao + "', Alterado.";
 
             }
             catch (Exception)

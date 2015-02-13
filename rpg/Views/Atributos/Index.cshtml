@@ -30,11 +30,10 @@
     </tbody>
 </table>
 <div class="modal" id="modal" style="width: 500px; height: 200px;">
-
     <div class="fechar">
         <a href="#" onclick="fecharmodal()">Fechar</a>
     </div>
-    <div class="titulomodal">
+    <div class="titulomodal" style=" margin-left:35%;">
         <p id="titulomodal" style=" margin-left: 20px;">Editar Atributos</p>
     </div>
     <form method="post">
@@ -46,8 +45,7 @@
             </div>
             <div class="linha">
                 <input type="checkbox" value="ativo" id="ativo" name="Atributos.Ativo"/><span>Ativo</span>
-            </div>
-            
+            </div>            
         </div>
         <div style="width: 80px; height: 100%;" class="divbtn">
             <input class="btnsalvar" id="btnsalvar" type="submit" value="Salvar" onclick="salvar()" style="margin-top: 125px;" />
@@ -55,25 +53,21 @@
     </form>
 </div>
 
+<div class="modaljs" id="modaljs">
+    <p class="textjs">Aguarde</p>
+</div>
 <script>
-    function clickmodal(id, descricao, ativo) {
-        
+    function clickmodal(id, descricao, ativo) {        
         $('#cod_atributo').val(id);
         $('#descricao').val(descricao);
         $('#ativo').prop('checked', ativo)
         $('.modal').bPopup({
             modalClose: false
         });
-
-    }
-
-    function fecharmodal() {
-        var bPopup = $('.modal').bPopup();
-        bPopup.close();
     }
 
     function botaonovo() {
-        clickmodal(0, "");
+        clickmodal(0, "", false);
     }
 
     function salvar() {
@@ -82,7 +76,15 @@
         var ativo = $('#ativo').prop('checked')
 
         var url = "@Url.Action("Adiciona", "Atributos")";
-        $.post(url, { cod_atributo: cod_atributo, descricao: descricao, ativo: ativo}, erro);
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: { cod_atributo: cod_atributo, descricao: descricao, ativo: ativo },
+            beforeSend: beforeSendFunction,
+            success: successFunction,
+            error: errorFunction,
+            complete: completeFunction
+        });
     }
 
     function deletar(cod_atributo, descricao, botao) {
@@ -93,14 +95,16 @@
            $('table tbody tr:even').removeClass("zebraUm zebraDois").addClass('zebraDois');
 
            var url = "@Url.Action("delete", "Atributos")";
-           $.post(url, { cod_atributo: cod_atributo }, erro);
+           $.ajax({
+               url: url,
+               type: "POST",
+               data: { cod_atributo: cod_atributo },
+               beforeSend: beforeSendFunction,
+               success: successFunction,
+               error: errorFunction,
+               complete: completeFunction
+           });
        }
    }
-
-    function erro(msgerro) {
-        if (msgerro != "") {
-            alert(msgerro);
-        }        
-    }
 
 </script>   

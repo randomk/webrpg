@@ -160,10 +160,21 @@ table#tabelaGrid tr td {
   font-size:11px;
   padding:3px 5px;
 }
+table#tabelaGrid tr th {
+  font-size:11px;
+  padding:3px 5px;
+  text-align: left;
+}
 table#tabelaGrid tr.titulo td {
   background-color:#C6CFF7;
   font-size:11px;
   padding:3px 0;
+}
+table#tabelaGrid tr.titulo th {
+  background-color:#C6CFF7;
+  font-size:11px;
+  padding:3px 0;  
+  text-align: left;
 }
 table#tabelaGrid tr td.funcoes {
   text-align:right;
