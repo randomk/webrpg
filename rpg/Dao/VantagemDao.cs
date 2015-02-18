@@ -11,7 +11,7 @@ using System.Web.Security;
 
 namespace rpg.Dao
 {
-    public class CampanhaDao
+    public class VantagemDao
     {
         
 

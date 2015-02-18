@@ -57,3 +57,10 @@ function completeFunction() {
     var bPopup = $('.modaljs').bPopup();
     bPopup.close();
 }
+
+function limite(campo, caractres) {
+    if ($(campo).val().length > caractres) {
+        $(campo).val($(campo).val().substr(0, caractres));
+        alert("O Campo não pode ter mais de " + caractres + " caracteres.");
+    }
+}

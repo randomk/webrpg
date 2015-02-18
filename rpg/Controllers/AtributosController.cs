@@ -19,7 +19,7 @@ namespace rpg.Controllers
             }
 
             ViewBag.pagina = "Atributos";
-            ViewBag.paginacao = "<a id=\"Primeira\" disabled=\"disabled\"><<</a>";
+            //ViewBag.paginacao = "<a id=\"Primeira\" disabled=\"disabled\"><<</a>";
             AtributoDao _AtributosDAO = new AtributoDao();
             IList<Atributos> _Atributos = _AtributosDAO.Listar_Atributos_dt();
             return View(_Atributos);
@@ -76,6 +76,10 @@ namespace rpg.Controllers
             if (string.IsNullOrEmpty(descricao))
             {
                 msg += " Campo descrição obrigatório /n";
+            }
+            if (descricao.Length > 150)
+            {
+                 msg += " Campo descrição não pode ter mais de 150 caracteres. /n";
             }
             if (!_AtributoDao.verifica_descricao(cod_atributo, descricao))
             {

@@ -33,8 +33,8 @@
     <div class="fechar">
         <a href="#" onclick="fecharmodal()">Fechar</a>
     </div>
-    <div class="titulomodal" style=" margin-left:35%;">
-        <p id="titulomodal" style=" margin-left: 20px;">Editar Atributos</p>
+    <div class="titulomodal" style=" margin-left:33%;">
+        <p id="titulomodal" style=" margin-left: 20px;">Editar</p>
     </div>
     <form method="post">
         <div class="modalform" style="width: 400px; height: 100%; float:left; margin-top:10px;">
@@ -61,13 +61,16 @@
         $('#cod_atributo').val(id);
         $('#descricao').val(descricao);
         $('#ativo').prop('checked', ativo)
+        if (id != 0) {
+            $('#titulomodal').html("Editar Atributo");
+        }
         $('.modal').bPopup({
             modalClose: false
         });
     }
 
     function botaonovo() {
-        clickmodal(0, "", false);
+        clickmodal(0, "", true);
     }
 
     function salvar() {
@@ -106,5 +109,9 @@
            });
        }
    }
+
+    $("#descricao").keyup(function () {
+        limite(this, 150);
+    });
 
 </script>   

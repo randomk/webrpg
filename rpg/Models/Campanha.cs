@@ -8,11 +8,16 @@ namespace rpg.Models
 {
     public class Campanha
     {
-        public int Cod_Atributo { get; set; }
+        public int Cod_Campanha { get; set; }
 
-        [Required]
+        public int Cod_Mestre { get; set; }
+        
+        public String Descricao_Basica { get; set; }
+
         public String Descricao { get; set; }
 
         public bool Ativo { get; set; }
+
+        public bool utilixar_Global { get; set; }
     }
 }
