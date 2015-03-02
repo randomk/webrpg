@@ -22,7 +22,7 @@ namespace rpg.Dao
             _conn = new Conexao();
             List<Atributos> list_Atributo = new List<Atributos>();
 
-            DataTable dt_Atributo = _conn.dataTable("select * from Atributos", "ATRIBUTOS");
+            DataTable dt_Atributo = _conn.dataTable("select * from Atributos order by descricao", "ATRIBUTOS");
             foreach (DataRow row in dt_Atributo.Rows)
             {
                 list_Atributo.Add(new Atributos
@@ -35,7 +35,23 @@ namespace rpg.Dao
 
             return list_Atributo;
         }
+        public List<Atributos> Listar_Atributos_ativo()
+        {
+            _conn = new Conexao();
+            List<Atributos> list_Atributo = new List<Atributos>();
 
+            DataTable dt_Atributo = _conn.dataTable("select * from Atributos where ativo = 1 order by descricao", "ATRIBUTOS");
+            foreach (DataRow row in dt_Atributo.Rows)
+            {
+                list_Atributo.Add(new Atributos
+                {
+                    Cod_Atributo = Convert.ToInt32(row["cod_atributo"].ToString()),
+                    Descricao = row["descricao"].ToString()
+                });
+            }
+
+            return list_Atributo;
+        }
         public bool verifica_descricao (int cod_atributo, string descricao)
         {
             Conexao _conn = new Conexao();

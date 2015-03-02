@@ -32,7 +32,7 @@ namespace rpg.Controllers
             if (string.IsNullOrEmpty(msg))
             {
                 AtributoDao _AtributoDao = new AtributoDao();
-                if (cod_atributo == 0)
+                if (cod_atributo == 0)                                              
                 {
                     if (verifica_acesso("Atributos", "Novo"))
                     {

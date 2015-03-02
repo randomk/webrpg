@@ -19,7 +19,9 @@ namespace rpg.Controllers
             }
 
             ViewBag.pagina = "Campanhas";
-            return View();
+            CampanhaDao _CampanhaDao = new CampanhaDao();
+            IList<Campanha> _Campanhas = _CampanhaDao.Listar_Campanhas_dt();
+            return View(_Campanhas);
         }
     }
 }

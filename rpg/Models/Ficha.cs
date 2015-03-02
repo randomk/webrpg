@@ -16,7 +16,7 @@ namespace rpg.Models
         [Required]
         public String Descricao { get; set; }
 
-        public IList<Atributos> Atributos { get; set; }
+        public IList<int> Atributos { get; set; }
 
         [Required]
         public String Calc_HP { get; set; }

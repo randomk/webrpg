@@ -20,7 +20,11 @@ namespace rpg.Controllers
             }
 
             ViewBag.pagina = "Fichas";
-            return View();
+            FichaDao _FichaDao = new FichaDao();
+            AtributoDao _AtributoDao = new AtributoDao();
+            IList<Ficha> _Fichas = _FichaDao.Listar_Fichas();
+            ViewBag.Atributos = _AtributoDao.Listar_Atributos_ativo();
+            return View(_Fichas);
         }
     }
 }

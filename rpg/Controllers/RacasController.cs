@@ -20,7 +20,22 @@ namespace rpg.Controllers
             }
 
             ViewBag.pagina = "Raças";
-            return View();
+            RacaDao _RacaDao = new RacaDao();
+            IList<Raca> _Racas = _RacaDao.Listar_Racas_grid();
+            return View(_Racas);
+        }
+
+        [Route("Raça/{id}", Name="Editar_Raca")]
+        public ActionResult Form(int id)
+        {
+            if (!verifica_acesso("Raças", "Visualizar"))
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            ViewBag.pagina = "Raças / Detalhes";
+            RacaDao _RacaDao = new RacaDao();
+            Raca _Racas = _RacaDao.Listar_Raca(id);
+            return View(_Racas);
         }
     }
 }

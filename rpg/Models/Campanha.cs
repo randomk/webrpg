@@ -11,13 +11,19 @@ namespace rpg.Models
         public int Cod_Campanha { get; set; }
 
         public int Cod_Mestre { get; set; }
+
+        public int Cod_Ficha { get; set; }
         
-        public String Descricao_Basica { get; set; }
+        public String Descricao_Detalhada { get; set; }
 
         public String Descricao { get; set; }
 
+        public int penalidade_peso { get; set; }
+
+        public List<int> requisito_classe { get; set; }
+
         public bool Ativo { get; set; }
 
-        public bool utilixar_Global { get; set; }
+        public bool utilizar_Global { get; set; }
     }
 }

@@ -10,17 +10,15 @@ namespace rpg.Models
     {
         public int Cod_Classe { get; set; }
 
-        public String Descricao_Basica { get; set; }
-
         public String Descricao { get; set; }
+
+        public String Descricao_Detalhada { get; set; }
 
         public int Campanha { get; set; } //admin pode cria classe global (campanha 0) mestre tem q escolher a campanha (dele)
 
-        public String Vantagens { get; set; }
+        public IList<int> Vantagens_Desvantagens { get; set; }
 
         public String Pericias { get; set; }
-
-        public bool Utilizar_Global { get; set; }
 
         public int Custo { get; set; }
 

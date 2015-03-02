@@ -17,6 +17,8 @@ namespace rpg.Controllers
             {
                 return RedirectToAction("Index", "Login");
             }
+            PerfilDao _PerfilDao = new PerfilDao();
+            ViewBag.perfil = _PerfilDao.Listar_Perfil_dt(true);
             UsuarioDao _UsuarioDao = new UsuarioDao();
             IList<Usuario> _Usuarios = _UsuarioDao.Listar_Usuarios();
             ViewBag.pagina = "Usuário";

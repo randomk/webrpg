@@ -31,7 +31,7 @@ namespace rpg.Controllers
                 IList<Permisao> _permisoes = _ModuloDao.Listar_permisao(_usuario.Cod_Perfil);
                 SessionView.PermisoesSession = _permisoes;
                 //Session["empresa"] = _UsuarioDao.Empresa(_usuario.Cod_Empresa_Pai);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Home", "Home");
             }
             else
             {
